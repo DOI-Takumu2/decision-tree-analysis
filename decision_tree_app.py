@@ -25,6 +25,7 @@ st.markdown("""
 1. **分析の目的**：本アプリは教育や研究用途での利用を目的としています。
 2. **データの適切な前処理**：精度向上のため、欠損値や異常値を含むデータは適切に処理してください。
 3. **結果の解釈**：本アプリの結果はデータに基づくものであり、必ずしも全てのケースにおいて最適な判断が得られるわけではありません。
+</div>
 """, unsafe_allow_html=True)
 
 st.markdown("")  # 空の行を追加
@@ -43,8 +44,8 @@ if uploaded_file is not None:
     # 学習データとテストデータに分割
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-    # 決定木モデルの作成と学習
-    model = DecisionTreeClassifier(random_state=42)
+    # 決定木モデルの作成と学習（max_depthを追加）
+    model = DecisionTreeClassifier(max_depth=5, random_state=42)
     model.fit(X_train, y_train)
 
     # テストデータで予測し、精度を表示
@@ -74,8 +75,6 @@ if uploaded_file is not None:
 
 else:
     st.write("CSVファイルを上の枠内にドラッグ＆ドロップすれば分析が始まります。")
-
-
 
 # 使用法の説明を枠で囲む
 st.markdown("""
